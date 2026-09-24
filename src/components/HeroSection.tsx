@@ -86,7 +86,7 @@ export default function HeroSection() {
 
               {/* Secondary CTA */}
               <button className="group inline-flex items-center justify-center gap-2 px-6 h-12 bg-white/80 backdrop-blur-sm border border-amber-200/60 text-slate-800 font-semibold text-sm rounded-xl hover:bg-amber-50/60 hover:border-amber-300/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap">
-                <Play className="w-4 h-4 text-amber-700" />
+                <Play className="w-4 h-4" style={{ color: '#A6BBF3' }} />
                 <span>Explore Results</span>
               </button>
             </div>
