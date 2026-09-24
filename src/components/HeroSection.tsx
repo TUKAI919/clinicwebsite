@@ -5,10 +5,10 @@ import {
   ShieldCheck,
   CheckCircle2,
   Star,
-  Award,
   Activity,
   TrendingUp,
   BadgeCheck,
+  Award,
   Users,
 } from 'lucide-react';
 
@@ -129,11 +129,11 @@ export default function HeroSection() {
             {/* Ambient glow behind photo container */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#0284C7]/10 to-[#D97706]/5 rounded-[2.5rem] blur-2xl scale-95" />
 
-            {/* Main Photo Container */}
-            <div className="relative w-full max-w-md lg:max-w-lg">
+            {/* Main Photo Container - overflow-visible for floating badges */}
+            <div className="relative w-full max-w-md lg:max-w-lg overflow-visible">
               
               {/* Photo Frame with Color Grading */}
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0284C7]/15 ring-1 ring-sky-500/20 transition-all duration-500 hover:scale-[1.01] hover:shadow-3xl">
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-[#0284C7]/15 ring-1 ring-sky-500/20 transition-all duration-500 hover:scale-[1.01]">
                 
                 {/* Main Clinical Image */}
                 <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full">
@@ -151,116 +151,65 @@ export default function HeroSection() {
                   
                   {/* Luxury border inner glow */}
                   <div className="absolute inset-0 rounded-[2.5rem] ring-1 ring-inset ring-white/10" />
-                </div>
 
-                {/* Floating Doctor Card - Bottom Left (Anchored in gradient) */}
-                <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 z-20">
-                  <div className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/15 backdrop-blur-xl border border-white/20 shadow-xl">
-                    {/* Doctor Avatar */}
-                    <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0284C7] to-[#0369A1] flex items-center justify-center flex-shrink-0 ring-2 ring-white/30">
-                      <span className="text-white font-bold text-sm">AS</span>
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-1.5">
-                        <p className="text-sm font-bold text-white">Dr. A. Sen, M.Ch.</p>
-                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
+                  {/* Doctor Dossier Bar - Full Width Bottom Anchor */}
+                  <div className="absolute bottom-4 left-4 right-4 z-20">
+                    <div className="bg-slate-950/85 backdrop-blur-md rounded-2xl p-4 border border-white/15 shadow-2xl">
+                      <div className="flex justify-between items-center gap-3">
+                        {/* Left Side - Doctor Info */}
+                        <div className="flex items-center gap-3 min-w-0 flex-1">
+                          {/* Avatar */}
+                          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#0284C7] to-[#0369A1] flex items-center justify-center flex-shrink-0 ring-2 ring-white/20">
+                            <span className="text-white font-bold text-xs sm:text-sm">AS</span>
+                          </div>
+                          
+                          {/* Doctor Details */}
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center gap-1.5">
+                              <p className="text-xs sm:text-sm font-bold text-white truncate">Dr. A. Sen, M.Ch.</p>
+                              <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 flex-shrink-0" />
+                            </div>
+                            <p className="text-[10px] sm:text-[11px] text-white/80 font-medium truncate">Board-Certified Hair Restoration Specialist</p>
+                            <div className="flex items-center gap-1 mt-0.5">
+                              <Award className="w-3 h-3 text-amber-400 flex-shrink-0" />
+                              <span className="text-[9px] sm:text-[10px] text-amber-300/90 font-medium">12+ Yrs Experience</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right Side - CTA Button */}
+                        <button className="group flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold rounded-xl transition-all duration-300 shadow-md shrink-0">
+                          <Users className="w-3.5 h-3.5" />
+                          <span className="hidden sm:inline">Meet Team</span>
+                          <span className="sm:hidden">Meet</span>
+                          <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+                        </button>
                       </div>
-                      <p className="text-[11px] text-white/80 font-medium">Board-Certified Hair Restoration Specialist</p>
-                      <p className="text-[10px] text-white/60 mt-0.5 flex items-center gap-1">
-                        <Award className="w-3 h-3 text-amber-400" />
-                        12+ Yrs Experience
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating Retention Metric - Top Right */}
-                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 animate-float">
-                  <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-white/15 backdrop-blur-xl border border-white/20 shadow-xl">
-                    {/* Circular Progress Ring */}
-                    <div className="relative w-10 h-10 flex-shrink-0">
-                      <svg className="w-full h-full -rotate-90" viewBox="0 0 40 40">
-                        <circle
-                          cx="20"
-                          cy="20"
-                          r="16"
-                          stroke="rgba(255,255,255,0.2)"
-                          strokeWidth="3"
-                          fill="none"
-                        />
-                        <circle
-                          cx="20"
-                          cy="20"
-                          r="16"
-                          stroke="#38bdf8"
-                          strokeWidth="3"
-                          fill="none"
-                          strokeDasharray={`${2 * Math.PI * 16 * 0.994} ${2 * Math.PI * 16}`}
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-[9px] font-bold text-white">99.4%</span>
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-white leading-tight">Follicle Retention</p>
-                      <p className="text-[10px] text-white/70 flex items-center gap-1">
-                        <BadgeCheck className="w-3 h-3 text-blue-300" />
-                        Clinically Verified
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Micro-CTA Badge - Bottom Edge */}
-                <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20">
-                  <button className="group flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/15 backdrop-blur-xl border border-white/20 hover:bg-white/25 hover:border-white/30 transition-all duration-300 shadow-lg">
-                    <Users className="w-4 h-4 text-white" />
-                    <span className="text-xs font-semibold text-white whitespace-nowrap">Meet the Surgical Team</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-1" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Floating Glass Card - Board Certified Badge (Top Left) */}
-              <div className="absolute -top-4 -left-2 sm:-top-6 sm:-left-4 animate-float z-20">
-                <div className="glass-card rounded-2xl p-3 sm:p-4 shadow-xl shadow-[#D97706]/10 border border-[#D97706]/20 max-w-[180px] sm:max-w-[200px] transition-all duration-300 hover:scale-[1.05]">
-                  <div className="flex items-start gap-2.5">
-                    <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-gradient-to-br from-[#D97706]/10 to-[#FEF3C7] flex items-center justify-center">
-                      <ShieldCheck className="w-5 h-5 text-[#D97706]" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-[#0F172A] leading-tight">Board-Certified Plastic Surgeons</p>
-                      <p className="text-[10px] text-[#64748B] mt-0.5 flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3 text-green-500" />
-                        Zero-Scar Guarantee
-                      </p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating Glass Card - Stats (Bottom Right) */}
-              <div className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-4 animate-float-reverse z-20">
-                <div className="glass-card rounded-2xl p-3 sm:p-4 shadow-xl shadow-[#0284C7]/10 border border-[#0284C7]/20 transition-all duration-300 hover:scale-[1.05]">
-                  <div className="flex items-center gap-3">
+              {/* Floating: Stats Badge - TOP RIGHT (outside photo frame) */}
+              <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20 animate-float">
+                <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-sky-100 transition-all duration-300 hover:scale-[1.05]">
+                  <div className="flex items-center gap-4">
                     <div className="flex flex-col items-center">
                       <p className="text-lg sm:text-xl font-bold text-[#0284C7]">3000+</p>
-                      <p className="text-[9px] text-[#64748B] font-medium">Grafts/Session</p>
+                      <p className="text-[9px] sm:text-[10px] text-[#64748B] font-medium">Grafts/Session</p>
                     </div>
                     <div className="w-px h-8 bg-gradient-to-b from-transparent via-[#CBD5E1] to-transparent" />
                     <div className="flex flex-col items-center">
                       <p className="text-lg sm:text-xl font-bold text-[#D97706]">45 min</p>
-                      <p className="text-[9px] text-[#64748B] font-medium">Procedure</p>
+                      <p className="text-[9px] sm:text-[10px] text-[#64748B] font-medium">Procedure</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Norwood Scale Micro-Badge */}
-              <div className="absolute top-1/2 -left-2 sm:-left-6 transform -translate-y-1/2 z-20">
-                <div className="glass-card rounded-xl px-3 py-2 shadow-lg border border-white/60 transition-all duration-300 hover:scale-[1.05] cursor-default">
+              {/* Floating: Norwood Scale Badge - TOP LEFT (outside photo frame) */}
+              <div className="absolute top-6 -left-4 sm:-left-6 z-20">
+                <div className="bg-white/95 backdrop-blur-md rounded-xl p-3 shadow-lg border border-slate-100 transition-all duration-300 hover:scale-[1.05] cursor-default">
                   <p className="text-[10px] sm:text-xs font-semibold text-[#0F172A] whitespace-nowrap">
                     Treating Norwood Stages{' '}
                     <span className="text-[#0284C7]">2 to 7</span>
