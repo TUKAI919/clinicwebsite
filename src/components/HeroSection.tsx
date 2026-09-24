@@ -36,13 +36,13 @@ export default function HeroSection() {
             
             {/* Live Status Pill */}
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-200/60 bg-amber-50/60 backdrop-blur-sm shadow-sm">
-                <span className="relative flex h-2.5 w-2.5">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-200/60 bg-emerald-50/50 backdrop-blur-sm shadow-sm">
+                <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span className="text-xs sm:text-sm font-medium text-slate-700">
-                  Live Consultation Slots Available Today
+                <span className="text-xs font-medium text-emerald-800">
+                  Live Now • Consultation Open
                 </span>
               </div>
               <div className="mt-2 ml-2">
@@ -55,37 +55,39 @@ export default function HeroSection() {
 
             {/* Impactful Headline */}
             <div className="animate-fade-in-up-delay-1">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.4rem] font-bold leading-[1.1] tracking-tight text-slate-900">
-                Permanent,{' '}
-                <span className="bg-gradient-to-r from-sky-700 to-slate-800 bg-clip-text text-transparent">
-                  Natural Hair Restoration
-                </span>{' '}
-                — Engineered With Micro-Precision.
+              <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-slate-900">
+                Permanent Natural Hair.
+                <br />
+                <span className="bg-gradient-to-r from-sky-600 to-slate-900 bg-clip-text text-transparent">
+                  Micro-Precision Density.
+                </span>
               </h1>
             </div>
 
             {/* Value Proposition Subtitle */}
             <div className="animate-fade-in-up-delay-2">
-              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
-                Painless, scarless micro-grafting supervised by board-certified hair surgeons. 
-                Walk in with thinning hair, walk out with guaranteed lifelong density.{' '}
-                <span className="font-semibold text-slate-800">0% Interest EMI Available.</span>
+              <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mb-3">
+                Painless micro-grafting supervised by board-certified hair surgeons. 
+                Lifelong natural density with zero visible linear scarring.
               </p>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                ✓ 0% Interest EMI Available
+              </span>
             </div>
 
             {/* Interactive Dual CTA Group */}
-            <div className="animate-fade-in-up-delay-3 flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="animate-fade-in-up-delay-3 flex flex-wrap sm:flex-nowrap items-center gap-3.5 pt-2">
               {/* Primary CTA */}
-              <button className="shimmer-btn group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-4 min-h-[52px] bg-gradient-to-r from-sky-600 to-sky-700 text-white font-semibold text-sm sm:text-base rounded-xl shadow-lg shadow-sky-600/20 hover:shadow-xl hover:shadow-sky-600/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
-                <Calendar className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
-                <span>Claim Free Scalp Analysis & Graft Estimate</span>
+              <button className="shimmer-btn group relative inline-flex items-center justify-center gap-2 px-6 h-12 bg-gradient-to-r from-sky-600 to-sky-700 text-white font-semibold text-sm rounded-xl shadow-lg shadow-sky-600/20 hover:shadow-xl hover:shadow-sky-600/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap">
+                <Calendar className="w-4 h-4" />
+                <span>Free Scalp Analysis & Quote</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
 
               {/* Secondary CTA */}
-              <button className="group inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-4 min-h-[52px] bg-white/80 backdrop-blur-sm border border-amber-200/60 text-slate-800 font-semibold text-sm sm:text-base rounded-xl hover:bg-amber-50/60 hover:border-amber-300/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]">
+              <button className="group inline-flex items-center justify-center gap-2 px-6 h-12 bg-white/80 backdrop-blur-sm border border-amber-200/60 text-slate-800 font-semibold text-sm rounded-xl hover:bg-amber-50/60 hover:border-amber-300/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap">
                 <Play className="w-4 h-4 text-amber-700" />
-                <span>Explore 1-Year Transformations</span>
+                <span>Explore Results</span>
               </button>
             </div>
 
