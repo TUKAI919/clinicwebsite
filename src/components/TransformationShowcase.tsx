@@ -216,7 +216,7 @@ const TransformationShowcase = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-200/60 bg-amber-50/50 backdrop-blur-sm shadow-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-200/60 bg-amber-50/50 backdrop-blur-sm shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] mb-6">
             <Sparkles size={16} className="text-amber-700" />
             <span className="text-sm font-semibold text-slate-700">Clinically Documented Transformations</span>
           </div>
@@ -244,10 +244,10 @@ const TransformationShowcase = () => {
               <button
                 key={caseStudy.id}
                 onClick={() => switchCase(index)}
-                className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm whitespace-nowrap transition-all duration-300 min-h-[44px] ${
+                className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm whitespace-nowrap transition-all duration-300 ease-out min-h-[44px] ${
                   activeCase === index
-                    ? 'bg-gradient-to-r from-sky-700 to-sky-800 text-white shadow-lg shadow-sky-700/15 scale-[1.02]'
-                    : 'bg-white/80 backdrop-blur-sm text-slate-700 border border-slate-200/80 hover:border-slate-300 hover:bg-white/90 hover:shadow-md'
+                    ? 'bg-gradient-to-r from-sky-700 to-sky-800 text-white shadow-[0_12px_35px_-4px_rgba(2,132,199,0.12)] border border-sky-400/80 scale-[1.02]'
+                    : 'bg-white/80 backdrop-blur-sm text-slate-700 border border-slate-200/70 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:border-slate-300 hover:bg-white/90 hover:shadow-[0_8px_28px_-4px_rgba(15,23,42,0.08)] hover:-translate-y-0.5'
                 }`}
               >
                 {caseStudy.tabLabel}
@@ -260,7 +260,7 @@ const TransformationShowcase = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
           {/* Before/After Slider */}
           <div className="lg:col-span-2">
-            <div className={`relative rounded-2xl overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)] ring-1 ring-slate-200/60 bg-slate-900 transition-opacity duration-200 ${isTransitioning ? 'opacity-60' : 'opacity-100'}`}>
+            <div className={`relative rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.06)] ring-1 ring-slate-200/60 bg-slate-900 transition-opacity duration-200 ${isTransitioning ? 'opacity-60' : 'opacity-100'}`}>
               <div
                 ref={sliderRef}
                 className="relative w-full aspect-[4/3] sm:aspect-[16/10] cursor-ew-resize select-none touch-none"
@@ -306,14 +306,14 @@ const TransformationShowcase = () => {
                 </div>
 
                 {/* BEFORE Badge */}
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-bold shadow-lg flex items-center gap-1.5 border border-white/10">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-md text-white text-xs font-bold shadow-[0_4px_20px_-2px_rgba(15,23,42,0.15)] flex items-center gap-1.5 border border-white/10">
                   <Eye size={12} />
                   BEFORE
                   <span className="text-[10px] font-normal opacity-70 hidden sm:inline">• {currentCase.beforeDate}</span>
                 </div>
 
                 {/* AFTER Badge */}
-                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 px-3 py-1.5 rounded-lg bg-sky-700/85 backdrop-blur-md text-white text-xs font-bold shadow-lg border border-sky-400/20">
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 px-3 py-1.5 rounded-lg bg-sky-700/85 backdrop-blur-md text-white text-xs font-bold shadow-[0_4px_20px_-2px_rgba(2,132,199,0.15)] border border-sky-400/20">
                   AFTER
                 </div>
 
@@ -332,10 +332,10 @@ const TransformationShowcase = () => {
                   style={{ left: `${sliderPosition}%`, transform: 'translate(-50%, -50%)' }}
                 >
                   <div
-                    className={`w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border-[3px] shadow-xl flex items-center justify-center transition-all duration-200 ${
+                    className={`w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border-[3px] shadow-[0_10px_35px_-5px_rgba(15,23,42,0.08)] flex items-center justify-center transition-all duration-300 ease-out ${
                       isDragging
-                        ? 'border-amber-500 shadow-amber-500/30 scale-110'
-                        : 'border-sky-400/80 shadow-sky-400/20 hover:scale-105'
+                        ? 'border-amber-500 shadow-[0_12px_35px_-4px_rgba(217,119,6,0.2)] scale-110'
+                        : 'border-sky-400/80 shadow-[0_10px_35px_-5px_rgba(2,132,199,0.12)] hover:scale-105'
                     }`}
                   >
                     <div className="flex items-center gap-0.5">
@@ -348,7 +348,7 @@ const TransformationShowcase = () => {
 
                 {/* Interaction Guide */}
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 sm:bottom-4 z-20">
-                  <div className="px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-sky-400/20 shadow-lg flex items-center gap-2">
+                  <div className="px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-sky-400/20 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.15)] flex items-center gap-2">
                     <div className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400/60 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-400/80"></span>
@@ -364,7 +364,7 @@ const TransformationShowcase = () => {
 
           {/* Clinical Dossier Card */}
           <div className="lg:col-span-1">
-            <div className={`lg:sticky lg:top-8 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] p-5 sm:p-6 space-y-5 transition-opacity duration-200 ${isTransitioning ? 'opacity-60' : 'opacity-100'}`}>
+            <div className={`lg:sticky lg:top-8 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)] p-5 sm:p-6 space-y-5 transition-all duration-300 ease-out hover:shadow-[0_18px_40px_-8px_rgba(15,23,42,0.07)] hover:-translate-y-0.5 ${isTransitioning ? 'opacity-60' : 'opacity-100'}`}>
               <div className="flex items-start gap-3 pb-4 border-b border-slate-100">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sky-50 to-sky-100 flex items-center justify-center flex-shrink-0 ring-2 ring-sky-100/60">
                   <User size={22} className="text-sky-700" />
@@ -380,7 +380,7 @@ const TransformationShowcase = () => {
 
               <div className="space-y-2.5">
                 <div className="flex items-start gap-3 p-3 rounded-xl bg-sky-50/50 border border-sky-100/60">
-                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-sm">
+                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-[0_2px_8px_-1px_rgba(15,23,42,0.05)]">
                     <Scissors size={16} className="text-sky-800" />
                   </div>
                   <div>
@@ -390,7 +390,7 @@ const TransformationShowcase = () => {
                 </div>
 
                 <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/60 border border-slate-100/60">
-                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-sm">
+                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-[0_2px_8px_-1px_rgba(15,23,42,0.05)]">
                     <ShieldCheck size={16} className="text-slate-700" />
                   </div>
                   <div>
@@ -400,7 +400,7 @@ const TransformationShowcase = () => {
                 </div>
 
                 <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50/60 border border-slate-100/60">
-                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-sm">
+                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-[0_2px_8px_-1px_rgba(15,23,42,0.05)]">
                     <Clock size={16} className="text-slate-700" />
                   </div>
                   <div>
@@ -410,7 +410,7 @@ const TransformationShowcase = () => {
                 </div>
 
                 <div className="flex items-start gap-3 p-3 rounded-xl bg-emerald-50/50 border border-emerald-100/60">
-                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-sm">
+                  <div className="p-1.5 rounded-lg bg-white/80 flex-shrink-0 shadow-[0_2px_8px_-1px_rgba(15,23,42,0.05)]">
                     <CheckCircle2 size={16} className="text-emerald-800" />
                   </div>
                   <div>
@@ -441,7 +441,7 @@ const TransformationShowcase = () => {
         </div>
 
         {/* Micro-Conversion Trigger */}
-        <div className="text-center py-10 sm:py-14 px-6 sm:px-10 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] relative overflow-hidden">
+        <div className="text-center py-10 sm:py-14 px-6 sm:px-10 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/70 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)] relative overflow-hidden">
           <div className="absolute inset-0 dot-grid opacity-[0.02]"></div>
           <div className="absolute top-0 right-0 w-40 h-40 bg-amber-50/20 rounded-full blur-2xl"></div>
           <div className="absolute bottom-0 left-0 w-40 h-40 bg-sky-50/20 rounded-full blur-2xl"></div>
@@ -453,7 +453,7 @@ const TransformationShowcase = () => {
             <p className="text-slate-600 mb-8 max-w-2xl mx-auto text-sm sm:text-base">
               Get a personalized graft estimate and treatment plan from our board-certified surgeons in just 48 hours.
             </p>
-            <button className="group inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-gradient-to-r from-sky-700 to-sky-800 hover:from-sky-800 hover:to-slate-800 text-white font-bold rounded-xl shadow-lg shadow-sky-700/15 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] min-h-[52px]">
+            <button className="group inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 bg-gradient-to-r from-sky-700 to-sky-800 hover:from-sky-800 hover:to-slate-800 text-white font-bold rounded-xl shadow-[0_8px_20px_-3px_rgba(2,132,199,0.25)] hover:shadow-[0_12px_28px_-3px_rgba(2,132,199,0.35)] transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-[0.98] min-h-[52px]">
               <Calendar size={20} />
               Calculate Grafts Needed For Your Scalp
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />

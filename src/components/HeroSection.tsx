@@ -36,7 +36,7 @@ export default function HeroSection() {
             
             {/* Live Status Pill */}
             <div className="animate-fade-in-up">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-200/60 bg-emerald-50/50 backdrop-blur-sm shadow-sm">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-200/60 bg-emerald-50/50 backdrop-blur-sm shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -78,14 +78,14 @@ export default function HeroSection() {
             {/* Interactive Dual CTA Group */}
             <div className="animate-fade-in-up-delay-3 flex flex-wrap sm:flex-nowrap items-center gap-3.5 pt-2">
               {/* Primary CTA */}
-              <button className="shimmer-btn group relative inline-flex items-center justify-center gap-2 px-6 h-12 bg-gradient-to-r from-sky-600 to-sky-700 text-white font-semibold text-sm rounded-xl shadow-lg shadow-sky-600/20 hover:shadow-xl hover:shadow-sky-600/25 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap">
+              <button className="shimmer-btn group relative inline-flex items-center justify-center gap-2 px-6 h-12 bg-gradient-to-r from-sky-600 to-sky-700 text-white font-semibold text-sm rounded-xl shadow-[0_8px_20px_-3px_rgba(2,132,199,0.25)] hover:shadow-[0_12px_28px_-3px_rgba(2,132,199,0.35)] transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-[0.98] whitespace-nowrap">
                 <Calendar className="w-4 h-4" />
                 <span>Free Scalp Analysis & Quote</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
 
               {/* Secondary CTA */}
-              <button className="group inline-flex items-center justify-center gap-2 px-6 h-12 bg-white/80 backdrop-blur-sm border border-amber-200/60 text-slate-800 font-semibold text-sm rounded-xl hover:bg-amber-50/60 hover:border-amber-300/60 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap">
+              <button className="group inline-flex items-center justify-center gap-2 px-6 h-12 bg-white/80 backdrop-blur-sm border border-amber-200/60 text-slate-800 font-semibold text-sm rounded-xl shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:shadow-[0_8px_28px_-4px_rgba(15,23,42,0.08)] hover:bg-amber-50/60 hover:border-amber-300/60 transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-[0.98] whitespace-nowrap">
                 <Play className="w-4 h-4" style={{ color: '#A6BBF3' }} />
                 <span>Explore Results</span>
               </button>
@@ -135,7 +135,7 @@ export default function HeroSection() {
             <div className="relative w-full max-w-md lg:max-w-lg overflow-visible">
               
               {/* Photo Frame with Color Grading */}
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-900/10 ring-1 ring-slate-200/60 transition-all duration-500 hover:scale-[1.01]">
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_25px_60px_-15px_rgba(15,23,42,0.06)] ring-1 ring-slate-200/60 transition-all duration-500 hover:scale-[1.01]">
                 
                 {/* Main Clinical Image */}
                 <div className="relative aspect-[4/5] sm:aspect-[3/4] w-full">
@@ -156,7 +156,7 @@ export default function HeroSection() {
 
                   {/* Doctor Dossier Bar - Full Width Bottom Anchor */}
                   <div className="absolute bottom-4 left-4 right-4 z-20">
-                    <div className="bg-slate-950/80 backdrop-blur-md rounded-2xl p-4 border border-white/10 shadow-2xl">
+                    <div className="bg-slate-950/80 backdrop-blur-md rounded-2xl p-4 border border-white/10 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.15)]">
                       <div className="flex justify-between items-center gap-3">
                         {/* Left Side - Doctor Info */}
                         <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -180,7 +180,7 @@ export default function HeroSection() {
                         </div>
 
                         {/* Right Side - CTA Button */}
-                        <button className="group flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl transition-all duration-300 shadow-md shrink-0">
+                        <button className="group flex items-center gap-1.5 px-3 sm:px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold rounded-xl transition-all duration-300 ease-out hover:-translate-y-0.5 shadow-[0_8px_20px_-3px_rgba(2,132,199,0.25)] hover:shadow-[0_12px_28px_-3px_rgba(2,132,199,0.35)] shrink-0">
                           <Users className="w-3.5 h-3.5" />
                           <span className="hidden sm:inline">Meet Team</span>
                           <span className="sm:hidden">Meet</span>
@@ -194,7 +194,7 @@ export default function HeroSection() {
 
               {/* Floating: Stats Badge - TOP RIGHT (outside photo frame) */}
               <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 z-20 animate-float">
-                <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-lg shadow-slate-900/5 border border-slate-200/60 transition-all duration-300 hover:scale-[1.05]">
+                <div className="bg-white/80 backdrop-blur-md rounded-2xl p-4 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] border border-slate-200/60 transition-all duration-300 hover:scale-[1.05]">
                   <div className="flex items-center gap-4">
                     <div className="flex flex-col items-center">
                       <p className="text-lg sm:text-xl font-bold text-sky-800">3000+</p>
@@ -211,7 +211,7 @@ export default function HeroSection() {
 
               {/* Floating: Norwood Scale Badge - TOP LEFT (outside photo frame) */}
               <div className="absolute top-6 -left-4 sm:-left-6 z-20">
-                <div className="bg-white/80 backdrop-blur-md rounded-xl p-3 shadow-lg shadow-slate-900/5 border border-slate-200/60 transition-all duration-300 hover:scale-[1.05] cursor-default">
+                <div className="bg-white/80 backdrop-blur-md rounded-xl p-3 shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] border border-slate-200/60 transition-all duration-300 hover:scale-[1.05] cursor-default">
                   <p className="text-[10px] sm:text-xs font-semibold text-slate-800 whitespace-nowrap">
                     Treating Norwood Stages{' '}
                     <span className="text-sky-800">2 to 7</span>

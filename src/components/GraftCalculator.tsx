@@ -249,7 +249,7 @@ const GraftCalculator: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-200/60 bg-amber-50/50 backdrop-blur-sm shadow-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-200/60 bg-amber-50/50 backdrop-blur-sm shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] mb-6">
             <Calculator size={16} className="text-amber-700" />
             <span className="text-sm font-semibold text-slate-700">Transparent Clinical Estimation</span>
           </div>
@@ -277,10 +277,10 @@ const GraftCalculator: React.FC = () => {
                 <button
                   key={stage.id}
                   onClick={() => setSelectedStage(stage.id)}
-                  className={`relative group p-4 sm:p-5 rounded-2xl border-2 transition-all duration-300 text-left min-h-[180px] flex flex-col ${
+                  className={`relative group p-4 sm:p-5 rounded-2xl border-2 transition-all duration-300 ease-out text-left min-h-[180px] flex flex-col ${
                     isActive
-                      ? 'border-sky-600 bg-white/80 backdrop-blur-sm shadow-[0_4px_20px_-4px_rgba(2,132,199,0.15)] scale-[1.02]'
-                      : 'border-slate-200/80 bg-white/70 backdrop-blur-sm hover:border-slate-300 hover:bg-white/80 hover:shadow-md hover:scale-[1.01]'
+                      ? 'border-sky-400/80 bg-white/80 backdrop-blur-sm shadow-[0_12px_35px_-4px_rgba(2,132,199,0.12)] scale-[1.02]'
+                      : 'border-slate-200/70 bg-white/70 backdrop-blur-sm shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:border-slate-300 hover:bg-white/80 hover:shadow-[0_8px_28px_-4px_rgba(15,23,42,0.08)] hover:-translate-y-0.5'
                   }`}
                 >
                   {/* Radio checkmark */}
@@ -329,10 +329,10 @@ const GraftCalculator: React.FC = () => {
                 <button
                   key={option.id}
                   onClick={() => setSelectedDensity(option.id)}
-                  className={`relative p-4 sm:p-5 rounded-2xl border-2 transition-all duration-300 text-left ${
+                  className={`relative p-4 sm:p-5 rounded-2xl border-2 transition-all duration-300 ease-out text-left ${
                     isActive
-                      ? 'border-sky-600 bg-white/80 backdrop-blur-sm shadow-[0_4px_20px_-4px_rgba(2,132,199,0.15)]'
-                      : 'border-slate-200/80 bg-white/70 backdrop-blur-sm hover:border-slate-300 hover:bg-white/80 hover:shadow-md'
+                      ? 'border-sky-400/80 bg-white/80 backdrop-blur-sm shadow-[0_12px_35px_-4px_rgba(2,132,199,0.12)]'
+                      : 'border-slate-200/70 bg-white/70 backdrop-blur-sm shadow-[0_4px_20px_-2px_rgba(15,23,42,0.05)] hover:border-slate-300 hover:bg-white/80 hover:shadow-[0_8px_28px_-4px_rgba(15,23,42,0.08)] hover:-translate-y-0.5'
                   }`}
                 >
                   <div className="flex items-start justify-between mb-2">
@@ -363,10 +363,10 @@ const GraftCalculator: React.FC = () => {
         {/* Live Results Dashboard */}
         {calculations && currentStage && (
           <div className="mb-10 animate-fade-in">
-            <div className="bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] rounded-3xl p-6 sm:p-8 lg:p-10">
+            <div className="bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.06)] rounded-3xl p-6 sm:p-8 lg:p-10">
               {/* Header */}
               <div className="flex items-center gap-3 mb-6 pb-6 border-b border-slate-100">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-600 to-sky-700 flex items-center justify-center shadow-lg shadow-sky-600/20">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-sky-600 to-sky-700 flex items-center justify-center shadow-[0_8px_20px_-3px_rgba(2,132,199,0.25)]">
                   <TrendingUp size={24} className="text-white" />
                 </div>
                 <div>
@@ -417,7 +417,7 @@ const GraftCalculator: React.FC = () => {
               {/* Procedure Details Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 <div className="flex items-start gap-3 p-4 rounded-xl bg-slate-50/60 border border-slate-100/60">
-                  <div className="p-2 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
+                  <div className="p-2 rounded-lg bg-white/80 shadow-[0_2px_8px_-1px_rgba(15,23,42,0.05)] flex-shrink-0">
                     <Clock size={18} className="text-slate-700" />
                   </div>
                   <div>
@@ -429,7 +429,7 @@ const GraftCalculator: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-3 p-4 rounded-xl bg-slate-50/60 border border-slate-100/60">
-                  <div className="p-2 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
+                  <div className="p-2 rounded-lg bg-white/80 shadow-[0_2px_8px_-1px_rgba(15,23,42,0.05)] flex-shrink-0">
                     <ShieldCheck size={18} className="text-slate-700" />
                   </div>
                   <div>
@@ -441,7 +441,7 @@ const GraftCalculator: React.FC = () => {
                 </div>
 
                 <div className="flex items-start gap-3 p-4 rounded-xl bg-emerald-50/50 border border-emerald-100/60">
-                  <div className="p-2 rounded-lg bg-white/80 shadow-sm flex-shrink-0">
+                  <div className="p-2 rounded-lg bg-white/80 shadow-[0_2px_8px_-1px_rgba(15,23,42,0.05)] flex-shrink-0">
                     <Check size={18} className="text-emerald-800" />
                   </div>
                   <div>
@@ -461,14 +461,14 @@ const GraftCalculator: React.FC = () => {
                     href={`https://wa.me/919999999999?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center justify-center gap-2.5 px-6 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl shadow-lg shadow-emerald-700/15 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
+                    className="group flex items-center justify-center gap-2.5 px-6 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-bold rounded-xl shadow-[0_8px_20px_-3px_rgba(4,120,87,0.25)] hover:shadow-[0_12px_28px_-3px_rgba(4,120,87,0.35)] transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <MessageCircle size={20} />
                     <span>Lock Estimate via WhatsApp</span>
                   </a>
 
                   {/* Consultation Button */}
-                  <button className="group flex items-center justify-center gap-2.5 px-6 py-4 bg-gradient-to-r from-sky-700 to-sky-800 hover:from-sky-800 hover:to-slate-800 text-white font-bold rounded-xl shadow-lg shadow-sky-700/15 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]">
+                  <button className="group flex items-center justify-center gap-2.5 px-6 py-4 bg-gradient-to-r from-sky-700 to-sky-800 hover:from-sky-800 hover:to-slate-800 text-white font-bold rounded-xl shadow-[0_8px_20px_-3px_rgba(2,132,199,0.25)] hover:shadow-[0_12px_28px_-3px_rgba(2,132,199,0.35)] transition-all duration-300 ease-out transform hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98]">
                     <Calendar size={20} />
                     <span>Book In-Clinic Microscopic Scalp Scan</span>
                   </button>
@@ -488,7 +488,7 @@ const GraftCalculator: React.FC = () => {
 
         {/* Empty State */}
         {!selectedStage && (
-          <div className="text-center py-12 px-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)]">
+          <div className="text-center py-12 px-6 rounded-2xl bg-white/60 backdrop-blur-sm border border-slate-200/70 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)]">
             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-100 flex items-center justify-center">
               <Calculator size={32} className="text-slate-400" />
             </div>
