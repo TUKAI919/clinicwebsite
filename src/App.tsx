@@ -4,6 +4,7 @@ import GraftCalculator from './components/GraftCalculator';
 import TechniqueComparison from './components/TechniqueComparison';
 import SurgeonCredentials from './components/SurgeonCredentials';
 import PatientReviews from './components/PatientReviews';
+import MedicalFAQ from './components/MedicalFAQ';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <TechniqueComparison />
       <SurgeonCredentials />
       <PatientReviews />
+      <MedicalFAQ />
     </div>
   );
 }
