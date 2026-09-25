@@ -5,10 +5,11 @@ import TechniqueComparison from './components/TechniqueComparison';
 import SurgeonCredentials from './components/SurgeonCredentials';
 import PatientReviews from './components/PatientReviews';
 import MedicalFAQ from './components/MedicalFAQ';
+import FinalSection from './components/FinalSection';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pb-20 md:pb-0">
       <HeroSection />
       <TransformationShowcase />
       <GraftCalculator />
@@ -16,6 +17,7 @@ export default function App() {
       <SurgeonCredentials />
       <PatientReviews />
       <MedicalFAQ />
+      <FinalSection />
     </div>
   );
 }
