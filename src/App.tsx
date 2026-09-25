@@ -3,6 +3,7 @@ import TransformationShowcase from './components/TransformationShowcase';
 import GraftCalculator from './components/GraftCalculator';
 import TechniqueComparison from './components/TechniqueComparison';
 import SurgeonCredentials from './components/SurgeonCredentials';
+import PatientReviews from './components/PatientReviews';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <GraftCalculator />
       <TechniqueComparison />
       <SurgeonCredentials />
+      <PatientReviews />
     </div>
   );
 }
