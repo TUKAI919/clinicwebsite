@@ -1,6 +1,7 @@
 import HeroSection from './components/HeroSection';
 import TransformationShowcase from './components/TransformationShowcase';
 import GraftCalculator from './components/GraftCalculator';
+import TechniqueComparison from './components/TechniqueComparison';
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
       <HeroSection />
       <TransformationShowcase />
       <GraftCalculator />
+      <TechniqueComparison />
     </div>
   );
 }
