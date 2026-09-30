@@ -8,7 +8,6 @@ import {
   MessageCircle,
   Calendar,
   Info,
-  MapPin,
 } from 'lucide-react';
 
 interface NorwoodStage {
@@ -23,11 +22,10 @@ interface ScalpZone {
   id: number;
   name: string;
   grafts: number;
-  color: string;
-  bgColor: string;
-  borderColor: string;
-  textColor: string;
-  hotspotPositions: Array<{ top: string; left?: string; right?: string; transform?: string }>;
+  inactiveFill: string;
+  activeFill: string;
+  labelX: number;
+  labelY: number;
 }
 
 const norwoodStages: NorwoodStage[] = [
@@ -73,76 +71,55 @@ const scalpZones: ScalpZone[] = [
     id: 1,
     name: 'Temples / Lateral Peaks',
     grafts: 500,
-    color: 'sky',
-    bgColor: 'bg-sky-50/80',
-    borderColor: 'border-sky-500',
-    textColor: 'text-sky-700',
-    hotspotPositions: [
-      { top: '72%', left: '34%' },
-      { top: '72%', right: '34%' },
-    ],
+    inactiveFill: '#E0F2FE',
+    activeFill: '#0284C7',
+    labelX: 200,
+    labelY: 380,
   },
   {
     id: 2,
     name: 'Frontal Hairline Band',
     grafts: 1500,
-    color: 'blue',
-    bgColor: 'bg-blue-50/80',
-    borderColor: 'border-blue-500',
-    textColor: 'text-blue-700',
-    hotspotPositions: [
-      { top: '60%', left: '42%' },
-      { top: '60%', right: '42%' },
-    ],
+    inactiveFill: '#DBEAFE',
+    activeFill: '#0284C7',
+    labelX: 200,
+    labelY: 320,
   },
   {
     id: 3,
     name: 'Mid-Frontal Core',
     grafts: 500,
-    color: 'indigo',
-    bgColor: 'bg-indigo-50/80',
-    borderColor: 'border-indigo-500',
-    textColor: 'text-indigo-700',
-    hotspotPositions: [
-      { top: '52%', left: '50%', transform: '-translate-x-1/2' },
-    ],
+    inactiveFill: '#E0E7FF',
+    activeFill: '#0284C7',
+    labelX: 200,
+    labelY: 260,
   },
   {
     id: 4,
     name: 'Mid-Scalp Transition',
     grafts: 1750,
-    color: 'violet',
-    bgColor: 'bg-violet-50/80',
-    borderColor: 'border-violet-500',
-    textColor: 'text-violet-700',
-    hotspotPositions: [
-      { top: '40%', left: '38%' },
-      { top: '40%', right: '38%' },
-    ],
+    inactiveFill: '#EDE9FE',
+    activeFill: '#0284C7',
+    labelX: 200,
+    labelY: 200,
   },
   {
     id: 5,
     name: 'Crown Bridge & Vertex',
     grafts: 1900,
-    color: 'purple',
-    bgColor: 'bg-purple-50/80',
-    borderColor: 'border-purple-500',
-    textColor: 'text-purple-700',
-    hotspotPositions: [
-      { top: '26%', left: '50%', transform: '-translate-x-1/2' },
-    ],
+    inactiveFill: '#F3E8FF',
+    activeFill: '#0284C7',
+    labelX: 200,
+    labelY: 140,
   },
   {
     id: 6,
     name: 'Vertex Whirlpool',
     grafts: 1500,
-    color: 'fuchsia',
-    bgColor: 'bg-fuchsia-50/80',
-    borderColor: 'border-fuchsia-500',
-    textColor: 'text-fuchsia-700',
-    hotspotPositions: [
-      { top: '14%', left: '50%', transform: '-translate-x-1/2' },
-    ],
+    inactiveFill: '#FAE8FF',
+    activeFill: '#0284C7',
+    labelX: 200,
+    labelY: 80,
   },
 ];
 
@@ -404,61 +381,159 @@ const GraftCalculator: React.FC = () => {
             <h3 className="text-lg sm:text-xl font-bold text-slate-900">Select Scalp Zones for Treatment</h3>
           </div>
 
-          {/* Interactive 16:9 Scalp Image Map */}
-          <div className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden border border-slate-200 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)] bg-slate-900 aspect-[16/9]">
-            {/* Scalp Image */}
-            <img
-              src="https://i.ibb.co/RG3DmKYX/scalp-zones.jpg"
-              alt="Interactive Scalp Graft Zones"
-              className="w-full h-full object-contain select-none pointer-events-none"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"%3E%3Crect fill="%230f172a" width="1600" height="900"/%3E%3Cellipse cx="800" cy="450" rx="300" ry="380" fill="%231e293b" stroke="%23475569" stroke-width="3"/%3E%3Ctext x="800" y="450" text-anchor="middle" fill="%2394a3b8" font-size="24" font-family="sans-serif"%3EScalp Zone Map%3C/text%3E%3C/svg%3E';
-              }}
-            />
+          {/* Interactive SVG Scalp Diagram */}
+          <div className="relative w-full max-w-sm mx-auto bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)] rounded-2xl p-6">
+            <svg viewBox="0 0 400 450" className="w-full select-none" xmlns="http://www.w3.org/2000/svg">
+              {/* Head Contour Outline */}
+              <ellipse
+                cx="200"
+                cy="225"
+                rx="150"
+                ry="200"
+                fill="#F8FAFC"
+                stroke="#94A3B8"
+                strokeWidth="2"
+              />
 
-            {/* Interactive Hotspots */}
-            {scalpZones.map((zone) => {
-              const isSelected = selectedZones.has(zone.id);
-              return zone.hotspotPositions.map((pos, idx) => (
-                <button
-                  key={`${zone.id}-${idx}`}
-                  onClick={() => toggleZone(zone.id)}
-                  className={`absolute min-h-[36px] min-w-[36px] rounded-full transition-all duration-300 ease-out cursor-pointer z-10 ${
-                    isSelected
-                      ? 'bg-[#0284C7] text-white border-2 border-white ring-4 ring-sky-400/40 text-xs font-semibold px-3 py-1 shadow-lg scale-110 flex items-center gap-1'
-                      : 'bg-slate-900/80 text-white border border-white/40 text-xs px-2.5 py-1 rounded-full backdrop-blur-sm hover:scale-110'
-                  }`}
-                  style={{
-                    top: pos.top,
-                    left: pos.left,
-                    right: pos.right,
-                    transform: pos.transform,
-                  }}
-                  title={`Zone ${zone.id}: ${zone.name} (${zone.grafts} grafts)`}
-                >
-                  {isSelected && (
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                    </span>
-                  )}
-                  <span>{zone.id}</span>
-                </button>
-              ));
-            })}
+              {/* Zone 1: Temples / Lateral Peaks */}
+              <path
+                d="M 80 320 Q 100 340, 120 350 L 140 360 Q 160 370, 180 375 L 200 380 L 220 375 Q 240 370, 260 360 L 280 350 Q 300 340, 320 320"
+                fill={selectedZones.has(1) ? scalpZones[0].activeFill : scalpZones[0].inactiveFill}
+                stroke={selectedZones.has(1) ? '#38BDF8' : '#CBD5E1'}
+                strokeWidth={selectedZones.has(1) ? '3' : '1.5'}
+                className="cursor-pointer transition-all duration-300 hover:opacity-80"
+                onClick={() => toggleZone(1)}
+              />
+              <text
+                x={scalpZones[0].labelX}
+                y={scalpZones[0].labelY}
+                textAnchor="middle"
+                fill={selectedZones.has(1) ? '#FFFFFF' : '#64748B'}
+                fontSize="16"
+                fontWeight="bold"
+                className="pointer-events-none"
+              >
+                1
+              </text>
 
-            {/* Image Caption Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/90 to-transparent p-4">
-              <p className="text-xs sm:text-sm text-white/90 text-center font-medium">
-                Clinical Scalp Graft Mapping — Zones 1 to 6 (ISHRS Reference Standard)
-              </p>
-            </div>
+              {/* Zone 2: Frontal Hairline Band */}
+              <path
+                d="M 100 280 Q 120 290, 140 295 L 160 300 Q 180 305, 200 310 L 220 305 Q 240 300, 260 295 L 280 290 Q 300 280, 300 270 L 290 260 Q 270 265, 250 270 L 230 275 Q 210 280, 200 280 L 180 275 Q 160 270, 140 265 L 120 260 Q 100 270, 100 280"
+                fill={selectedZones.has(2) ? scalpZones[1].activeFill : scalpZones[1].inactiveFill}
+                stroke={selectedZones.has(2) ? '#38BDF8' : '#CBD5E1'}
+                strokeWidth={selectedZones.has(2) ? '3' : '1.5'}
+                className="cursor-pointer transition-all duration-300 hover:opacity-80"
+                onClick={() => toggleZone(2)}
+              />
+              <text
+                x={scalpZones[1].labelX}
+                y={scalpZones[1].labelY}
+                textAnchor="middle"
+                fill={selectedZones.has(2) ? '#FFFFFF' : '#64748B'}
+                fontSize="16"
+                fontWeight="bold"
+                className="pointer-events-none"
+              >
+                2
+              </text>
+
+              {/* Zone 3: Mid-Frontal Core */}
+              <path
+                d="M 120 230 Q 140 240, 160 245 L 180 250 Q 190 252, 200 252 L 220 250 Q 240 245, 260 240 L 280 230 L 270 210 Q 250 215, 230 220 L 210 225 Q 200 226, 190 225 L 170 220 Q 150 215, 130 210 Z"
+                fill={selectedZones.has(3) ? scalpZones[2].activeFill : scalpZones[2].inactiveFill}
+                stroke={selectedZones.has(3) ? '#38BDF8' : '#CBD5E1'}
+                strokeWidth={selectedZones.has(3) ? '3' : '1.5'}
+                className="cursor-pointer transition-all duration-300 hover:opacity-80"
+                onClick={() => toggleZone(3)}
+              />
+              <text
+                x={scalpZones[2].labelX}
+                y={scalpZones[2].labelY}
+                textAnchor="middle"
+                fill={selectedZones.has(3) ? '#FFFFFF' : '#64748B'}
+                fontSize="16"
+                fontWeight="bold"
+                className="pointer-events-none"
+              >
+                3
+              </text>
+
+              {/* Zone 4: Mid-Scalp Transition */}
+              <path
+                d="M 110 180 Q 130 190, 150 195 L 170 200 Q 185 203, 200 203 L 230 200 Q 250 195, 270 190 L 290 180 L 280 160 Q 260 165, 240 170 L 220 175 Q 210 177, 200 177 L 180 175 Q 160 170, 140 165 L 120 160 Z"
+                fill={selectedZones.has(4) ? scalpZones[3].activeFill : scalpZones[3].inactiveFill}
+                stroke={selectedZones.has(4) ? '#38BDF8' : '#CBD5E1'}
+                strokeWidth={selectedZones.has(4) ? '3' : '1.5'}
+                className="cursor-pointer transition-all duration-300 hover:opacity-80"
+                onClick={() => toggleZone(4)}
+              />
+              <text
+                x={scalpZones[3].labelX}
+                y={scalpZones[3].labelY}
+                textAnchor="middle"
+                fill={selectedZones.has(4) ? '#FFFFFF' : '#64748B'}
+                fontSize="16"
+                fontWeight="bold"
+                className="pointer-events-none"
+              >
+                4
+              </text>
+
+              {/* Zone 5: Crown Bridge & Vertex */}
+              <path
+                d="M 130 120 Q 150 130, 170 135 L 185 138 Q 192 139, 200 139 L 215 138 Q 230 135, 250 130 L 270 120 L 260 100 Q 240 105, 220 110 L 210 113 Q 205 114, 200 114 L 190 113 Q 180 110, 160 105 L 140 100 Z"
+                fill={selectedZones.has(5) ? scalpZones[4].activeFill : scalpZones[4].inactiveFill}
+                stroke={selectedZones.has(5) ? '#38BDF8' : '#CBD5E1'}
+                strokeWidth={selectedZones.has(5) ? '3' : '1.5'}
+                className="cursor-pointer transition-all duration-300 hover:opacity-80"
+                onClick={() => toggleZone(5)}
+              />
+              <text
+                x={scalpZones[4].labelX}
+                y={scalpZones[4].labelY}
+                textAnchor="middle"
+                fill={selectedZones.has(5) ? '#FFFFFF' : '#64748B'}
+                fontSize="16"
+                fontWeight="bold"
+                className="pointer-events-none"
+              >
+                5
+              </text>
+
+              {/* Zone 6: Vertex Whirlpool */}
+              <ellipse
+                cx="200"
+                cy="70"
+                rx="50"
+                ry="40"
+                fill={selectedZones.has(6) ? scalpZones[5].activeFill : scalpZones[5].inactiveFill}
+                stroke={selectedZones.has(6) ? '#38BDF8' : '#CBD5E1'}
+                strokeWidth={selectedZones.has(6) ? '3' : '1.5'}
+                className="cursor-pointer transition-all duration-300 hover:opacity-80"
+                onClick={() => toggleZone(6)}
+              />
+              <text
+                x={scalpZones[5].labelX}
+                y={scalpZones[5].labelY}
+                textAnchor="middle"
+                fill={selectedZones.has(6) ? '#FFFFFF' : '#64748B'}
+                fontSize="16"
+                fontWeight="bold"
+                className="pointer-events-none"
+              >
+                6
+              </text>
+            </svg>
+
+            {/* Caption */}
+            <p className="text-xs sm:text-sm text-slate-500 text-center mt-4 font-medium">
+              Clinical Scalp Graft Mapping — Zones 1 to 6 (ISHRS Reference Standard)
+            </p>
           </div>
 
           {/* Helper Text */}
           <p className="text-sm text-slate-600 text-center mt-4 italic">
-            Tap any zone on the scalp diagram above to add or remove grafts from your calculation.
+            Click directly on any zone in the scalp diagram above to add or remove grafts.
           </p>
 
           {/* Selected Zones Summary Pills */}
