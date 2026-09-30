@@ -1,3 +1,4 @@
+import React from 'react';
 import HeroSection from './components/HeroSection';
 import TransformationShowcase from './components/TransformationShowcase';
 import GraftCalculator from './components/GraftCalculator';
