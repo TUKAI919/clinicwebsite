@@ -27,6 +27,7 @@ interface ScalpZone {
   bgColor: string;
   borderColor: string;
   textColor: string;
+  hotspotPositions: Array<{ top: string; left?: string; right?: string; transform?: string }>;
 }
 
 const norwoodStages: NorwoodStage[] = [
@@ -76,6 +77,10 @@ const scalpZones: ScalpZone[] = [
     bgColor: 'bg-sky-50/80',
     borderColor: 'border-sky-500',
     textColor: 'text-sky-700',
+    hotspotPositions: [
+      { top: '72%', left: '34%' },
+      { top: '72%', right: '34%' },
+    ],
   },
   {
     id: 2,
@@ -85,6 +90,10 @@ const scalpZones: ScalpZone[] = [
     bgColor: 'bg-blue-50/80',
     borderColor: 'border-blue-500',
     textColor: 'text-blue-700',
+    hotspotPositions: [
+      { top: '60%', left: '42%' },
+      { top: '60%', right: '42%' },
+    ],
   },
   {
     id: 3,
@@ -94,6 +103,9 @@ const scalpZones: ScalpZone[] = [
     bgColor: 'bg-indigo-50/80',
     borderColor: 'border-indigo-500',
     textColor: 'text-indigo-700',
+    hotspotPositions: [
+      { top: '52%', left: '50%', transform: '-translate-x-1/2' },
+    ],
   },
   {
     id: 4,
@@ -103,6 +115,10 @@ const scalpZones: ScalpZone[] = [
     bgColor: 'bg-violet-50/80',
     borderColor: 'border-violet-500',
     textColor: 'text-violet-700',
+    hotspotPositions: [
+      { top: '40%', left: '38%' },
+      { top: '40%', right: '38%' },
+    ],
   },
   {
     id: 5,
@@ -112,6 +128,9 @@ const scalpZones: ScalpZone[] = [
     bgColor: 'bg-purple-50/80',
     borderColor: 'border-purple-500',
     textColor: 'text-purple-700',
+    hotspotPositions: [
+      { top: '26%', left: '50%', transform: '-translate-x-1/2' },
+    ],
   },
   {
     id: 6,
@@ -121,6 +140,9 @@ const scalpZones: ScalpZone[] = [
     bgColor: 'bg-fuchsia-50/80',
     borderColor: 'border-fuchsia-500',
     textColor: 'text-fuchsia-700',
+    hotspotPositions: [
+      { top: '14%', left: '50%', transform: '-translate-x-1/2' },
+    ],
   },
 ];
 
@@ -373,7 +395,7 @@ const GraftCalculator: React.FC = () => {
           </div>
         </div>
 
-        {/* STEP 2: Scalp Graft Distribution */}
+        {/* STEP 2: Interactive Scalp Zone Map */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-5">
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center shadow-[0_4px_12px_-2px_rgba(2,132,199,0.3)]">
@@ -382,118 +404,85 @@ const GraftCalculator: React.FC = () => {
             <h3 className="text-lg sm:text-xl font-bold text-slate-900">Select Scalp Zones for Treatment</h3>
           </div>
 
-          {/* 2-Column Layout: Diagram + Zone Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            
-            {/* Left Column: Scalp Diagram */}
-            <div className="flex flex-col items-center justify-center">
-              <div className="relative w-full max-w-md">
-                <div className="bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)] rounded-2xl p-4 sm:p-6">
-                  <img
-                    src="https://i.ibb.co/RG3DmKYX/scalp-graft-distribution.png"
-                    alt="Scalp Graft Distribution Map"
-                    className="w-full rounded-xl border border-slate-200/60 shadow-sm object-contain bg-white"
-                    onError={(e) => {
-                      // Fallback if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const fallback = target.nextElementSibling as HTMLElement;
-                      if (fallback) fallback.style.display = 'flex';
-                    }}
-                  />
-                  {/* Fallback SVG diagram if image fails */}
-                  <div className="hidden w-full aspect-square rounded-xl border border-slate-200/60 bg-gradient-to-br from-slate-50 to-slate-100 items-center justify-center">
-                    <svg viewBox="0 0 400 400" className="w-full h-full p-8" xmlns="http://www.w3.org/2000/svg">
-                      {/* Head outline */}
-                      <ellipse cx="200" cy="200" rx="150" ry="180" fill="none" stroke="#CBD5E1" strokeWidth="2" />
-                      {/* Zone markers */}
-                      <ellipse cx="120" cy="120" rx="30" ry="25" fill="#0284C7" opacity="0.2" stroke="#0284C7" strokeWidth="2" />
-                      <text x="120" y="125" textAnchor="middle" fill="#0284C7" fontSize="14" fontWeight="bold">1</text>
-                      
-                      <ellipse cx="200" cy="80" rx="50" ry="20" fill="#0369A1" opacity="0.2" stroke="#0369A1" strokeWidth="2" />
-                      <text x="200" y="85" textAnchor="middle" fill="#0369A1" fontSize="14" fontWeight="bold">2</text>
-                      
-                      <ellipse cx="200" cy="140" rx="40" ry="30" fill="#4F46E5" opacity="0.2" stroke="#4F46E5" strokeWidth="2" />
-                      <text x="200" y="145" textAnchor="middle" fill="#4F46E5" fontSize="14" fontWeight="bold">3</text>
-                      
-                      <ellipse cx="200" cy="210" rx="50" ry="35" fill="#7C3AED" opacity="0.2" stroke="#7C3AED" strokeWidth="2" />
-                      <text x="200" y="215" textAnchor="middle" fill="#7C3AED" fontSize="14" fontWeight="bold">4</text>
-                      
-                      <ellipse cx="200" cy="280" rx="45" ry="30" fill="#9333EA" opacity="0.2" stroke="#9333EA" strokeWidth="2" />
-                      <text x="200" y="285" textAnchor="middle" fill="#9333EA" fontSize="14" fontWeight="bold">5</text>
-                      
-                      <ellipse cx="200" cy="340" rx="35" ry="25" fill="#C026D3" opacity="0.2" stroke="#C026D3" strokeWidth="2" />
-                      <text x="200" y="345" textAnchor="middle" fill="#C026D3" fontSize="14" fontWeight="bold">6</text>
-                      
-                      <text x="200" y="390" textAnchor="middle" fill="#64748B" fontSize="12" fontWeight="500">Clinical Scalp Map</text>
-                    </svg>
-                  </div>
-                </div>
-                {/* Caption */}
-                <p className="text-xs sm:text-sm text-slate-500 text-center mt-3 font-medium">
-                  Clinical Scalp Graft Mapping — Zones 1 to 6 (ISHRS Reference Standard)
-                </p>
-              </div>
-            </div>
+          {/* Interactive 16:9 Scalp Image Map */}
+          <div className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden border border-slate-200 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)] bg-slate-900 aspect-[16/9]">
+            {/* Scalp Image */}
+            <img
+              src="https://i.ibb.co/RG3DmKYX/scalp-zones.jpg"
+              alt="Interactive Scalp Graft Zones"
+              className="w-full h-full object-contain select-none pointer-events-none"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900"%3E%3Crect fill="%230f172a" width="1600" height="900"/%3E%3Cellipse cx="800" cy="450" rx="300" ry="380" fill="%231e293b" stroke="%23475569" stroke-width="3"/%3E%3Ctext x="800" y="450" text-anchor="middle" fill="%2394a3b8" font-size="24" font-family="sans-serif"%3EScalp Zone Map%3C/text%3E%3C/svg%3E';
+              }}
+            />
 
-            {/* Right Column: Interactive Zone Cards */}
-            <div className="flex flex-col">
-              <p className="text-sm text-slate-600 mb-4">
-                Click zones to add or remove. Selected zones will be included in your graft calculation.
+            {/* Interactive Hotspots */}
+            {scalpZones.map((zone) => {
+              const isSelected = selectedZones.has(zone.id);
+              return zone.hotspotPositions.map((pos, idx) => (
+                <button
+                  key={`${zone.id}-${idx}`}
+                  onClick={() => toggleZone(zone.id)}
+                  className={`absolute min-h-[36px] min-w-[36px] rounded-full transition-all duration-300 ease-out cursor-pointer z-10 ${
+                    isSelected
+                      ? 'bg-[#0284C7] text-white border-2 border-white ring-4 ring-sky-400/40 text-xs font-semibold px-3 py-1 shadow-lg scale-110 flex items-center gap-1'
+                      : 'bg-slate-900/80 text-white border border-white/40 text-xs px-2.5 py-1 rounded-full backdrop-blur-sm hover:scale-110'
+                  }`}
+                  style={{
+                    top: pos.top,
+                    left: pos.left,
+                    right: pos.right,
+                    transform: pos.transform,
+                  }}
+                  title={`Zone ${zone.id}: ${zone.name} (${zone.grafts} grafts)`}
+                >
+                  {isSelected && (
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                    </span>
+                  )}
+                  <span>{zone.id}</span>
+                </button>
+              ));
+            })}
+
+            {/* Image Caption Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900/90 to-transparent p-4">
+              <p className="text-xs sm:text-sm text-white/90 text-center font-medium">
+                Clinical Scalp Graft Mapping — Zones 1 to 6 (ISHRS Reference Standard)
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
-                {scalpZones.map((zone) => {
-                  const isSelected = selectedZones.has(zone.id);
-                  return (
-                    <button
-                      key={zone.id}
-                      onClick={() => toggleZone(zone.id)}
-                      className={`relative p-4 rounded-xl border-2 transition-all duration-300 text-left ${
-                        isSelected
-                          ? `${zone.borderColor} ${zone.bgColor} ring-2 ring-sky-300/50 shadow-[0_8px_20px_-3px_rgba(2,132,199,0.15)]`
-                          : 'border-slate-200/70 bg-white/70 backdrop-blur-sm hover:border-slate-300 hover:bg-white/80 hover:shadow-md'
-                      }`}
-                    >
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-center gap-2">
-                          <div
-                            className={`w-7 h-7 rounded-full flex items-center justify-center transition-all text-xs font-bold ${
-                              isSelected ? `${zone.borderColor} bg-white text-slate-900` : 'bg-slate-100 text-slate-500'
-                            }`}
-                          >
-                            {isSelected ? <Check size={14} className="text-sky-700" strokeWidth={3} /> : zone.id}
-                          </div>
-                          <span className="text-xs font-semibold text-slate-500">Zone {zone.id}</span>
-                        </div>
-                        <span className={`text-xs font-bold ${isSelected ? zone.textColor : 'text-slate-600'}`}>
-                          {zone.grafts.toLocaleString()} Grafts
-                        </span>
-                      </div>
-                      <p className={`text-sm font-semibold ${isSelected ? 'text-slate-900' : 'text-slate-700'}`}>
-                        {zone.name}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Live Summary (Mobile - shows below zones) */}
-              {calculations && (
-                <div className="mt-4 p-4 rounded-xl bg-sky-50/60 border border-sky-200/60 lg:hidden">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs text-slate-500 font-medium">Selected Zones</p>
-                      <p className="text-lg font-bold text-slate-900">{selectedZones.size} of 6 zones</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-500 font-medium">Total Grafts</p>
-                      <p className="text-lg font-bold text-sky-700">{calculations.totalGrafts.toLocaleString()}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
+
+          {/* Helper Text */}
+          <p className="text-sm text-slate-600 text-center mt-4 italic">
+            Tap any zone on the scalp diagram above to add or remove grafts from your calculation.
+          </p>
+
+          {/* Selected Zones Summary Pills */}
+          {selectedZones.size > 0 && (
+            <div className="mt-6 flex flex-wrap gap-2 justify-center">
+              {Array.from(selectedZones).sort().map((zoneId) => {
+                const zone = scalpZones.find(z => z.id === zoneId);
+                if (!zone) return null;
+                return (
+                  <button
+                    key={zoneId}
+                    onClick={() => toggleZone(zoneId)}
+                    className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-50 border border-sky-200 hover:bg-red-50 hover:border-red-200 transition-all duration-200"
+                  >
+                    <Check size={14} className="text-sky-600 group-hover:hidden" />
+                    <span className="text-xs font-semibold text-slate-700">
+                      Zone {zone.id}: {zone.name.split(' / ')[0]} ({zone.grafts.toLocaleString()})
+                    </span>
+                    <span className="hidden group-hover:inline text-red-500 text-xs">✕</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* STEP 3: Estimate & Conversion CTAs */}
