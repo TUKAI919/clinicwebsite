@@ -8,7 +8,7 @@ import {
   MessageCircle,
   Calendar,
   Info,
-  Zap,
+  MapPin,
 } from 'lucide-react';
 
 interface NorwoodStage {
@@ -24,6 +24,9 @@ interface ScalpZone {
   name: string;
   grafts: number;
   color: string;
+  bgColor: string;
+  borderColor: string;
+  textColor: string;
 }
 
 const norwoodStages: NorwoodStage[] = [
@@ -65,18 +68,65 @@ const norwoodStages: NorwoodStage[] = [
 ];
 
 const scalpZones: ScalpZone[] = [
-  { id: 1, name: 'Temples / Temporal Peaks', grafts: 500, color: 'sky' },
-  { id: 2, name: 'Frontal Hairline Band', grafts: 1500, color: 'blue' },
-  { id: 3, name: 'Central Mid-Frontal Core', grafts: 500, color: 'indigo' },
-  { id: 4, name: 'Mid-Scalp / Transition Region', grafts: 1750, color: 'violet' },
-  { id: 5, name: 'Crown Bridge & Vertex Transition', grafts: 1900, color: 'purple' },
-  { id: 6, name: 'Vertex / Posterior Whirlpool', grafts: 1500, color: 'fuchsia' },
+  {
+    id: 1,
+    name: 'Temples / Lateral Peaks',
+    grafts: 500,
+    color: 'sky',
+    bgColor: 'bg-sky-50/80',
+    borderColor: 'border-sky-500',
+    textColor: 'text-sky-700',
+  },
+  {
+    id: 2,
+    name: 'Frontal Hairline Band',
+    grafts: 1500,
+    color: 'blue',
+    bgColor: 'bg-blue-50/80',
+    borderColor: 'border-blue-500',
+    textColor: 'text-blue-700',
+  },
+  {
+    id: 3,
+    name: 'Mid-Frontal Core',
+    grafts: 500,
+    color: 'indigo',
+    bgColor: 'bg-indigo-50/80',
+    borderColor: 'border-indigo-500',
+    textColor: 'text-indigo-700',
+  },
+  {
+    id: 4,
+    name: 'Mid-Scalp Transition',
+    grafts: 1750,
+    color: 'violet',
+    bgColor: 'bg-violet-50/80',
+    borderColor: 'border-violet-500',
+    textColor: 'text-violet-700',
+  },
+  {
+    id: 5,
+    name: 'Crown Bridge & Vertex',
+    grafts: 1900,
+    color: 'purple',
+    bgColor: 'bg-purple-50/80',
+    borderColor: 'border-purple-500',
+    textColor: 'text-purple-700',
+  },
+  {
+    id: 6,
+    name: 'Vertex Whirlpool',
+    grafts: 1500,
+    color: 'fuchsia',
+    bgColor: 'bg-fuchsia-50/80',
+    borderColor: 'border-fuchsia-500',
+    textColor: 'text-fuchsia-700',
+  },
 ];
 
 // Accurate Norwood SVG Illustrations
 const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ stage, isActive }) => {
   const strokeColor = isActive ? '#0284C7' : '#94A3B8';
-  const fillColor = isActive ? '#0284C7' : '#CBD5E1';
   const hairColor = isActive ? '#0369A1' : '#64748B';
 
   const renderStage = () => {
@@ -84,9 +134,7 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
       case 2:
         return (
           <g>
-            {/* Head outline */}
             <ellipse cx="50" cy="50" rx="35" ry="40" fill="none" stroke={strokeColor} strokeWidth="1.5" />
-            {/* Hair with M-shape recession */}
             <path
               d="M 20 35 Q 25 25, 35 28 Q 40 22, 50 25 Q 60 22, 65 28 Q 75 25, 80 35"
               fill="none"
@@ -94,19 +142,14 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-            {/* Temple recession indicators */}
             <path d="M 25 30 L 30 35" stroke={hairColor} strokeWidth="2" strokeLinecap="round" opacity="0.6" />
             <path d="M 75 30 L 70 35" stroke={hairColor} strokeWidth="2" strokeLinecap="round" opacity="0.6" />
-            {/* Hair texture lines */}
-            <path d="M 35 28 L 38 32" stroke={hairColor} strokeWidth="1" opacity="0.4" />
-            <path d="M 65 28 L 62 32" stroke={hairColor} strokeWidth="1" opacity="0.4" />
           </g>
         );
       case 3:
         return (
           <g>
             <ellipse cx="50" cy="50" rx="35" ry="40" fill="none" stroke={strokeColor} strokeWidth="1.5" />
-            {/* Deeper M recession */}
             <path
               d="M 20 38 Q 28 28, 35 32 Q 42 25, 50 28 Q 58 25, 65 32 Q 72 28, 80 38"
               fill="none"
@@ -114,10 +157,8 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-            {/* More pronounced temple areas */}
             <path d="M 23 33 L 30 38" stroke={hairColor} strokeWidth="2" strokeLinecap="round" opacity="0.7" />
             <path d="M 77 33 L 70 38" stroke={hairColor} strokeWidth="2" strokeLinecap="round" opacity="0.7" />
-            {/* Forehead widening indicator */}
             <ellipse cx="50" cy="32" rx="15" ry="5" fill="none" stroke={hairColor} strokeWidth="0.8" strokeDasharray="2,2" opacity="0.4" />
           </g>
         );
@@ -125,7 +166,6 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
         return (
           <g>
             <ellipse cx="50" cy="50" rx="35" ry="40" fill="none" stroke={strokeColor} strokeWidth="1.5" />
-            {/* Receded hairline */}
             <path
               d="M 20 40 Q 30 30, 38 34 Q 44 28, 50 30 Q 56 28, 62 34 Q 70 30, 80 40"
               fill="none"
@@ -133,7 +173,6 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-            {/* Crown thinning spot */}
             <ellipse cx="50" cy="65" rx="10" ry="8" fill="none" stroke={hairColor} strokeWidth="2" strokeDasharray="3,2" />
             <circle cx="50" cy="65" r="3" fill={hairColor} opacity="0.3" />
           </g>
@@ -142,7 +181,6 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
         return (
           <g>
             <ellipse cx="50" cy="50" rx="35" ry="40" fill="none" stroke={strokeColor} strokeWidth="1.5" />
-            {/* Advanced recession */}
             <path
               d="M 20 42 Q 32 32, 40 36 Q 46 30, 50 32 Q 54 30, 60 36 Q 68 32, 80 42"
               fill="none"
@@ -150,9 +188,7 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-            {/* Larger crown area */}
             <ellipse cx="50" cy="62" rx="14" ry="10" fill="none" stroke={hairColor} strokeWidth="2" strokeDasharray="3,2" />
-            {/* Bridge thinning */}
             <path d="M 42 45 Q 50 50, 58 45" fill="none" stroke={hairColor} strokeWidth="1.5" strokeDasharray="2,2" opacity="0.5" />
           </g>
         );
@@ -160,7 +196,6 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
         return (
           <g>
             <ellipse cx="50" cy="50" rx="35" ry="40" fill="none" stroke={strokeColor} strokeWidth="1.5" />
-            {/* Minimal hair remaining */}
             <path
               d="M 20 45 Q 28 40, 35 42 Q 40 38, 45 40"
               fill="none"
@@ -175,7 +210,6 @@ const NorwoodIllustration: React.FC<{ stage: number; isActive: boolean }> = ({ s
               strokeWidth="2.5"
               strokeLinecap="round"
             />
-            {/* Large bald area */}
             <ellipse cx="50" cy="55" rx="22" ry="18" fill="none" stroke={hairColor} strokeWidth="2" strokeDasharray="3,2" />
             <ellipse cx="50" cy="38" rx="12" ry="8" fill="none" stroke={hairColor} strokeWidth="1.5" strokeDasharray="2,2" opacity="0.4" />
           </g>
@@ -235,7 +269,7 @@ const GraftCalculator: React.FC = () => {
 
     const costPerGraft = 25;
     const costMin = totalGrafts * costPerGraft;
-    const costMax = Math.round(totalGrafts * 1.15 * costPerGraft); // 15% buffer for premium density
+    const costMax = Math.round(totalGrafts * 1.15 * costPerGraft);
     const emiMonthly = Math.round(costMin / 12);
 
     return {
@@ -285,12 +319,12 @@ const GraftCalculator: React.FC = () => {
         </div>
 
         {/* STEP 1: Norwood Stage Selector */}
-        <div className="mb-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full bg-sky-100 flex items-center justify-center">
-              <span className="text-sm font-bold text-sky-700">1</span>
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center shadow-[0_4px_12px_-2px_rgba(2,132,199,0.3)]">
+              <span className="text-sm font-bold text-white">1</span>
             </div>
-            <h3 className="text-lg font-bold text-slate-900">Select Your Norwood Stage</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900">Select Your Norwood Stage</h3>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             {norwoodStages.map((stage) => {
@@ -339,66 +373,148 @@ const GraftCalculator: React.FC = () => {
           </div>
         </div>
 
-        {/* STEP 2: Interactive Scalp Zones */}
-        <div className="mb-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full bg-sky-100 flex items-center justify-center">
-              <span className="text-sm font-bold text-sky-700">2</span>
+        {/* STEP 2: Scalp Graft Distribution */}
+        <div className="mb-12">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center shadow-[0_4px_12px_-2px_rgba(2,132,199,0.3)]">
+              <span className="text-sm font-bold text-white">2</span>
             </div>
-            <h3 className="text-lg font-bold text-slate-900">Select Scalp Zones for Treatment</h3>
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900">Select Scalp Zones for Treatment</h3>
           </div>
-          <p className="text-sm text-slate-600 mb-4 ml-11">
-            Click zones to add or remove. Selected zones will be included in your graft calculation.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {scalpZones.map((zone) => {
-              const isSelected = selectedZones.has(zone.id);
-              return (
-                <button
-                  key={zone.id}
-                  onClick={() => toggleZone(zone.id)}
-                  className={`relative p-4 rounded-xl border-2 transition-all duration-300 text-left ${
-                    isSelected
-                      ? 'border-sky-500 bg-sky-50/80 shadow-[0_8px_20px_-3px_rgba(2,132,199,0.15)]'
-                      : 'border-slate-200/70 bg-white/70 backdrop-blur-sm hover:border-slate-300 hover:bg-white/80 hover:shadow-md'
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <div
-                        className={`w-6 h-6 rounded-full flex items-center justify-center transition-all ${
-                          isSelected ? 'bg-sky-500' : 'bg-slate-200'
-                        }`}
-                      >
-                        {isSelected && <Check size={14} className="text-white" strokeWidth={3} />}
-                      </div>
-                      <span className="text-xs font-semibold text-slate-500">Zone {zone.id}</span>
-                    </div>
-                    <span className={`text-xs font-bold ${isSelected ? 'text-sky-700' : 'text-slate-600'}`}>
-                      {zone.grafts.toLocaleString()} Grafts
-                    </span>
+
+          {/* 2-Column Layout: Diagram + Zone Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+            
+            {/* Left Column: Scalp Diagram */}
+            <div className="flex flex-col items-center justify-center">
+              <div className="relative w-full max-w-md">
+                <div className="bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_10px_35px_-5px_rgba(15,23,42,0.04),0_2px_8px_-1px_rgba(15,23,42,0.02)] rounded-2xl p-4 sm:p-6">
+                  <img
+                    src="https://i.ibb.co/RG3DmKYX/scalp-graft-distribution.png"
+                    alt="Scalp Graft Distribution Map"
+                    className="w-full rounded-xl border border-slate-200/60 shadow-sm object-contain bg-white"
+                    onError={(e) => {
+                      // Fallback if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const fallback = target.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = 'flex';
+                    }}
+                  />
+                  {/* Fallback SVG diagram if image fails */}
+                  <div className="hidden w-full aspect-square rounded-xl border border-slate-200/60 bg-gradient-to-br from-slate-50 to-slate-100 items-center justify-center">
+                    <svg viewBox="0 0 400 400" className="w-full h-full p-8" xmlns="http://www.w3.org/2000/svg">
+                      {/* Head outline */}
+                      <ellipse cx="200" cy="200" rx="150" ry="180" fill="none" stroke="#CBD5E1" strokeWidth="2" />
+                      {/* Zone markers */}
+                      <ellipse cx="120" cy="120" rx="30" ry="25" fill="#0284C7" opacity="0.2" stroke="#0284C7" strokeWidth="2" />
+                      <text x="120" y="125" textAnchor="middle" fill="#0284C7" fontSize="14" fontWeight="bold">1</text>
+                      
+                      <ellipse cx="200" cy="80" rx="50" ry="20" fill="#0369A1" opacity="0.2" stroke="#0369A1" strokeWidth="2" />
+                      <text x="200" y="85" textAnchor="middle" fill="#0369A1" fontSize="14" fontWeight="bold">2</text>
+                      
+                      <ellipse cx="200" cy="140" rx="40" ry="30" fill="#4F46E5" opacity="0.2" stroke="#4F46E5" strokeWidth="2" />
+                      <text x="200" y="145" textAnchor="middle" fill="#4F46E5" fontSize="14" fontWeight="bold">3</text>
+                      
+                      <ellipse cx="200" cy="210" rx="50" ry="35" fill="#7C3AED" opacity="0.2" stroke="#7C3AED" strokeWidth="2" />
+                      <text x="200" y="215" textAnchor="middle" fill="#7C3AED" fontSize="14" fontWeight="bold">4</text>
+                      
+                      <ellipse cx="200" cy="280" rx="45" ry="30" fill="#9333EA" opacity="0.2" stroke="#9333EA" strokeWidth="2" />
+                      <text x="200" y="285" textAnchor="middle" fill="#9333EA" fontSize="14" fontWeight="bold">5</text>
+                      
+                      <ellipse cx="200" cy="340" rx="35" ry="25" fill="#C026D3" opacity="0.2" stroke="#C026D3" strokeWidth="2" />
+                      <text x="200" y="345" textAnchor="middle" fill="#C026D3" fontSize="14" fontWeight="bold">6</text>
+                      
+                      <text x="200" y="390" textAnchor="middle" fill="#64748B" fontSize="12" fontWeight="500">Clinical Scalp Map</text>
+                    </svg>
                   </div>
-                  <p className={`text-sm font-semibold ${isSelected ? 'text-slate-900' : 'text-slate-700'}`}>
-                    {zone.name}
-                  </p>
-                </button>
-              );
-            })}
+                </div>
+                {/* Caption */}
+                <p className="text-xs sm:text-sm text-slate-500 text-center mt-3 font-medium">
+                  Clinical Scalp Graft Mapping — Zones 1 to 6 (ISHRS Reference Standard)
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column: Interactive Zone Cards */}
+            <div className="flex flex-col">
+              <p className="text-sm text-slate-600 mb-4">
+                Click zones to add or remove. Selected zones will be included in your graft calculation.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
+                {scalpZones.map((zone) => {
+                  const isSelected = selectedZones.has(zone.id);
+                  return (
+                    <button
+                      key={zone.id}
+                      onClick={() => toggleZone(zone.id)}
+                      className={`relative p-4 rounded-xl border-2 transition-all duration-300 text-left ${
+                        isSelected
+                          ? `${zone.borderColor} ${zone.bgColor} ring-2 ring-sky-300/50 shadow-[0_8px_20px_-3px_rgba(2,132,199,0.15)]`
+                          : 'border-slate-200/70 bg-white/70 backdrop-blur-sm hover:border-slate-300 hover:bg-white/80 hover:shadow-md'
+                      }`}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2">
+                          <div
+                            className={`w-7 h-7 rounded-full flex items-center justify-center transition-all text-xs font-bold ${
+                              isSelected ? `${zone.borderColor} bg-white text-slate-900` : 'bg-slate-100 text-slate-500'
+                            }`}
+                          >
+                            {isSelected ? <Check size={14} className="text-sky-700" strokeWidth={3} /> : zone.id}
+                          </div>
+                          <span className="text-xs font-semibold text-slate-500">Zone {zone.id}</span>
+                        </div>
+                        <span className={`text-xs font-bold ${isSelected ? zone.textColor : 'text-slate-600'}`}>
+                          {zone.grafts.toLocaleString()} Grafts
+                        </span>
+                      </div>
+                      <p className={`text-sm font-semibold ${isSelected ? 'text-slate-900' : 'text-slate-700'}`}>
+                        {zone.name}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Live Summary (Mobile - shows below zones) */}
+              {calculations && (
+                <div className="mt-4 p-4 rounded-xl bg-sky-50/60 border border-sky-200/60 lg:hidden">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs text-slate-500 font-medium">Selected Zones</p>
+                      <p className="text-lg font-bold text-slate-900">{selectedZones.size} of 6 zones</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs text-slate-500 font-medium">Total Grafts</p>
+                      <p className="text-lg font-bold text-sky-700">{calculations.totalGrafts.toLocaleString()}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* STEP 3: Simplified Result Dashboard */}
+        {/* STEP 3: Estimate & Conversion CTAs */}
         {calculations && (
           <div className="mb-10 animate-fade-in">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-sky-500 to-sky-600 flex items-center justify-center shadow-[0_4px_12px_-2px_rgba(2,132,199,0.3)]">
+                <span className="text-sm font-bold text-white">3</span>
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900">Your Personalized Estimate</h3>
+            </div>
+
             <div className="bg-white/80 backdrop-blur-md border border-slate-200/70 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.06)] rounded-3xl p-6 sm:p-8 lg:p-10">
               {/* Main Results Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                {/* Box 1: Estimated Follicles */}
+                {/* Box 1: Total Grafts */}
                 <div className="p-5 rounded-2xl bg-sky-50/50 border border-sky-100/60 backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-3">
                     <Sparkles size={18} className="text-sky-700" />
                     <span className="text-sm font-semibold text-sky-800 uppercase tracking-wide">
-                      Estimated Follicles
+                      Total Calculated Grafts
                     </span>
                   </div>
                   <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">
@@ -407,12 +523,12 @@ const GraftCalculator: React.FC = () => {
                   <p className="text-sm text-slate-600">Based on 40-45 Follicles/cm² international density standard</p>
                 </div>
 
-                {/* Box 2: Estimated Cost */}
+                {/* Box 2: Price Range */}
                 <div className="p-5 rounded-2xl bg-amber-50/40 border border-amber-200/50 backdrop-blur-sm">
                   <div className="flex items-center gap-2 mb-3">
                     <Calculator size={18} className="text-amber-800" />
                     <span className="text-sm font-semibold text-amber-800 uppercase tracking-wide">
-                      Estimated Procedure Cost
+                      Total Price Range
                     </span>
                   </div>
                   <p className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-2">
